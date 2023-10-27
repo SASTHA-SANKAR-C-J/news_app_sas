@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_sas/model/news_data_model.dart';
-import 'package:news_app_sas/view/news_screen.dart';
+import 'package:news_app_sas/widgets/news_screen.dart';
 
 class TechnologyScreen extends StatefulWidget {
   const TechnologyScreen({super.key});

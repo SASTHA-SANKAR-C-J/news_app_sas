@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_sas/model/news_data_model.dart';
 
-import '../news_screen.dart';
+import '../../widgets/news_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

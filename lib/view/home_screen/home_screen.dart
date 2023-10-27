@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:news_app_sas/model/news_data_model.dart';
 import 'package:news_app_sas/view/car_screen/car_screen.dart';
 import 'package:news_app_sas/view/health_screen/health_screen.dart';
-import 'package:news_app_sas/view/news_screen.dart';
+import 'package:news_app_sas/widgets/news_screen.dart';
 import 'package:news_app_sas/view/search_screen/search_screen.dart';
 import 'package:news_app_sas/view/sports_screen/sports_screen.dart';
 import 'package:news_app_sas/view/technology_screen/technology_screen.dart';
+
+import '../../widgets/category_button_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -40,28 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         centerTitle: true,
         elevation: 0,
-        // leading: Padding(
-        //   padding: const EdgeInsets.all(10.0),
-        //   child: Container(
-        //     decoration: BoxDecoration(
-        //         color: Colors.blue[100],
-        //         borderRadius: BorderRadius.circular(10)),
-        //     child: Icon(
-        //       Icons.horizontal_split_outlined,
-        //       color: Colors.blue,
-        //     ),
-        //   ),
-        // ),
-        // actions: [
-        //   Padding(
-        //     padding: const EdgeInsets.all(10.0),
-        //     child: Icon(
-        //       Icons.person_sharp,
-        //       color: Colors.blue,
-        //       size: 33,
-        //     ),
-        //   )
-        // ],
       ),
       body: RefreshIndicator(
         onRefresh: () => loading(),
@@ -199,35 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => SportsScreen(),
                       )),
-                  child: Container(
-                    height: 70,
-                    width: width,
-                    decoration: BoxDecoration(
-                        color: Color(0xFF8775fc),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Sports',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            '100 article about this',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  child: CategoryButtonWidget(width: width, category: 'Sports'),
                 ),
                 SizedBox(
                   height: 15,
@@ -238,35 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => HealthScreen(),
                       )),
-                  child: Container(
-                    height: 70,
-                    width: width,
-                    decoration: BoxDecoration(
-                        color: Color(0xFF8775fc),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Health',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            '100 article about this',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  child: CategoryButtonWidget(width: width, category: 'Health'),
                 ),
                 SizedBox(
                   height: 15,
@@ -277,35 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => TechnologyScreen(),
                       )),
-                  child: Container(
-                    height: 70,
-                    width: width,
-                    decoration: BoxDecoration(
-                        color: Color(0xFF8775fc),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Technology',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            '100 article about this',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  child: CategoryButtonWidget(width: width,category: 'Technology',),
                 ),
                 SizedBox(
                   height: 15,
@@ -316,35 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => CarSCreen(),
                       )),
-                  child: Container(
-                    height: 70,
-                    width: width,
-                    decoration: BoxDecoration(
-                        color: Color(0xFF8775fc),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Cars',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            '100 article about this',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  child: CategoryButtonWidget(width: width, category: 'Cars'),
                 ),
                 SizedBox(
                   height: 15,
