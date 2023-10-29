@@ -1,52 +1,11 @@
-// To parse this JSON data, do
-//
-//     final publicApiResponse = publicApiResponseFromJson(jsonString);
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
-PublicApiResponse publicApiResponseFromJson(String str) => PublicApiResponse.fromJson(json.decode(str));
-
-String publicApiResponseToJson(PublicApiResponse data) => json.encode(data.toJson());
-
-PublicApiResponse? responseDataBreaking;
-Future<void> fetchapidatabreaking() async {
-  final url = Uri.parse('https://newsapi.org/v2/top-headlines?country=in&apiKey=cc852c9efd2447d4af948a5d561f9a1d');
+PublicApiResponse? responseDataBbc;
+Future<void> fetchapidatabbc() async {
+  final url = Uri.parse('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=cc852c9efd2447d4af948a5d561f9a1d');
   var response = await http.get(url);
   print(response.statusCode);
-  responseDataBreaking = PublicApiResponse.fromJson(jsonDecode(response.body));
-}
-
-PublicApiResponse? responseDataSports;
-Future<void> fetchapidatasports() async {
-  final url = Uri.parse('https://newsapi.org/v2/everything?q=sports&apiKey=cc852c9efd2447d4af948a5d561f9a1d');
-  var response = await http.get(url);
-  print(response.statusCode);
-  responseDataSports = PublicApiResponse.fromJson(jsonDecode(response.body));
-}
-
-PublicApiResponse? responseDataHealth;
-Future<void> fetchapidatahealth() async {
-  final url = Uri.parse('https://newsapi.org/v2/everything?q=health&apiKey=cc852c9efd2447d4af948a5d561f9a1d');
-  var response = await http.get(url);
-  print(response.statusCode);
-  responseDataHealth = PublicApiResponse.fromJson(jsonDecode(response.body));
-}
-
-PublicApiResponse? responseDataTechnology;
-Future<void> fetchapidatatechnology() async {
-  final url = Uri.parse('https://newsapi.org/v2/everything?q=technology&apiKey=cc852c9efd2447d4af948a5d561f9a1d');
-  var response = await http.get(url);
-  print(response.statusCode);
-  responseDataTechnology = PublicApiResponse.fromJson(jsonDecode(response.body));
-}
-
-PublicApiResponse? responseDataCar;
-Future<void> fetchapidatacar() async {
-  final url = Uri.parse('https://newsapi.org/v2/everything?q=cars&apiKey=cc852c9efd2447d4af948a5d561f9a1d');
-  var response = await http.get(url);
-  print(response.statusCode);
-  responseDataCar = PublicApiResponse.fromJson(jsonDecode(response.body));
+  responseDataBbc = PublicApiResponse.fromJson(jsonDecode(response.body));
 }
 
 PublicApiResponse? responseDataSearch;
