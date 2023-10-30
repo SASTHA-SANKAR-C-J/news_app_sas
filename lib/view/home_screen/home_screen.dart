@@ -12,11 +12,28 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool load = false;
+  @override
+  void initState() {
+    super.initState();
+    getInitialData();
+  }
+
+  void getInitialData(){
+    setState(() {
+      load = true;
+    });
+    fetchapidatabbc(context);
+    fetchapidatasearch();
+    setState(() {
+      load = false;
+    });
+  }
+  
   Future<void> loading() async {
     setState(() {
       load = true;
     });
-    await fetchapidatabbc();
+    await fetchapidatabbc(context);
     setState(() {
       load = false;
     });
@@ -113,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Center(child: CircularProgressIndicator()))
                     : Expanded(
                         child: ListView.builder(
-                          itemCount: responseDataBbc?.articles?.length,
+                          itemCount: responseDataBbc?.articles?.length??0,
                           scrollDirection: Axis.vertical,
                           itemBuilder: (context, index) => Padding(
                             padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
