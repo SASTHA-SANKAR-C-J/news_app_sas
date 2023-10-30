@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app_sas/model/news_data_model.dart';
-
+import 'package:news_app_sas/controller/news_controller.dart';
 import '../../widgets/news_screen.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -11,12 +10,13 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  NewsController _newsController = NewsController();
    bool load = false;
   void search(value) async {
       setState(() {
         load = true;
       });
-      await fetchapidatasearch(searchquery: value);
+      await _newsController.fetchapidatasearch(searchquery: value,context: context);
       setState(() {
         load = false;
       });
@@ -63,7 +63,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ? Expanded(child: Center(child: CircularProgressIndicator()))
               : Expanded(
                   child: ListView.builder(
-                    itemCount: responseDataSearch?.articles?.length,
+                    itemCount: _newsController.responseDataSearch?.articles?.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
@@ -73,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             MaterialPageRoute(
                               builder: (context) => NewsScreen(
                                   response:
-                                      responseDataSearch?.articles?[index]),
+                                      _newsController.responseDataSearch?.articles?[index]),
                             )),
                         child: Container(
                           height: 200,
@@ -81,7 +81,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                   fit: BoxFit.fitWidth,
-                                  image: NetworkImage(responseDataSearch
+                                  image: NetworkImage(_newsController.responseDataSearch
                                           ?.articles?[index].urlToImage
                                           .toString() ??
                                       "https://media4.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b952wv0yphvhi6m54h8bejydufv91sz2de5quondqyvm&ep=v1_gifs_search&rid=200w.gif&ct=g")),
@@ -103,7 +103,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                         height: 20,
                                       ),
                                       Text(
-                                        (responseDataSearch
+                                        (_newsController.responseDataSearch
                                                 ?.articles?[index].title)
                                             .toString(),
                                         maxLines: 2,

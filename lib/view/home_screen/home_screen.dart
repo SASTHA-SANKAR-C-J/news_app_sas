@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app_sas/model/news_data_model.dart';
+import 'package:news_app_sas/controller/news_controller.dart';
 import 'package:news_app_sas/widgets/news_screen.dart';
 import 'package:news_app_sas/view/search_screen/search_screen.dart';
 
@@ -12,18 +12,19 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool load = false;
+  final NewsController _newsController = NewsController();
   @override
   void initState() {
-    super.initState();
     getInitialData();
+    super.initState();
   }
 
   void getInitialData(){
     setState(() {
       load = true;
     });
-    fetchapidatabbc(context);
-    fetchapidatasearch();
+    _newsController.fetchapidatabbc(context);
+    _newsController.fetchapidatasearch(context: context);
     setState(() {
       load = false;
     });
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       load = true;
     });
-    await fetchapidatabbc(context);
+    await _newsController.fetchapidatabbc(context);
     setState(() {
       load = false;
     });
@@ -84,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 10,
             ),
-            (responseDataBbc?.status == "error")
+            (_newsController.responseDataBbc?.status == "error")
                 ? Center(
                     child: Padding(
                       padding: const EdgeInsets.all(50),
@@ -130,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Center(child: CircularProgressIndicator()))
                     : Expanded(
                         child: ListView.builder(
-                          itemCount: responseDataBbc?.articles?.length??0,
+                          itemCount: _newsController.responseDataBbc?.articles?.length??0,
                           scrollDirection: Axis.vertical,
                           itemBuilder: (context, index) => Padding(
                             padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
@@ -140,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   MaterialPageRoute(
                                     builder: (context) => NewsScreen(
                                         response:
-                                            responseDataBbc?.articles?[index]),
+                                            _newsController.responseDataBbc?.articles?[index]),
                                   )),
                               child: Container(
                                 height: 200,
@@ -148,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         fit: BoxFit.fitWidth,
-                                        image: NetworkImage(responseDataBbc
+                                        image: NetworkImage(_newsController.responseDataBbc
                                                 ?.articles?[index].urlToImage
                                                 .toString() ??
                                             "https://media4.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b952wv0yphvhi6m54h8bejydufv91sz2de5quondqyvm&ep=v1_gifs_search&rid=200w.gif&ct=g")),
@@ -171,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               height: 30,
                                             ),
                                             Text(
-                                              (responseDataBbc
+                                              (_newsController.responseDataBbc
                                                       ?.articles?[index].title)
                                                   .toString(),
                                               maxLines: 2,
