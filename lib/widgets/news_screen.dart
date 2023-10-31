@@ -73,6 +73,9 @@ class _NewsScreenState extends State<NewsScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            SizedBox(
+                              height: 10,
+                            ),
                             Text(
                               (widget.response?.author).toString(),
                               maxLines: 1,
@@ -106,10 +109,10 @@ class _NewsScreenState extends State<NewsScreen> {
                   Text((widget.response?.description).toString(),style: TextStyle(fontSize: 16,),),
                   SizedBox(height: 10,),
                   Text((widget.response?.content).toString(),style: TextStyle(fontSize: 16,),),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 15,),
                   InkWell(
                     onTap: () => launchUrl(Uri.parse((widget.response?.url).toString())),
-                    child: Container(height: 30,width: 90,child: Center(child: Text("Read More",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.blue),))
+                    child: Container(height: 40,width: 120,child: Center(child: Text("Read More",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.blue),))
                 ],
               ),
             )

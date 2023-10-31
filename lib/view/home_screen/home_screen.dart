@@ -16,10 +16,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     getInitialData();
+    setState(() {});
     super.initState();
   }
 
-  void getInitialData(){
+  void getInitialData() {
     setState(() {
       load = true;
     });
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
       load = false;
     });
   }
-  
+
   Future<void> loading() async {
     setState(() {
       load = true;
@@ -88,50 +89,60 @@ class _HomeScreenState extends State<HomeScreen> {
             (_newsController.responseDataBbc?.status == "error")
                 ? Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(50),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.grey),
-                        height: 120,
-                        width: 200,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
-                                  child: Text(
-                                    'Oops!',
-                                    style: TextStyle(color: Colors.white, fontSize: 35,fontWeight: FontWeight.bold),
-                                  ),
+                    padding: const EdgeInsets.all(50),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.grey),
+                      height: 120,
+                      width: 200,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                child: Text(
+                                  'Oops!',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.bold),
                                 ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
-                                  child: ElevatedButton(onPressed: (){
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                                child: ElevatedButton(
+                                  onPressed: () {
                                     loading();
-                                  }, child: Text("Retry"),style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Color(0xFF8775fc))),),
+                                  },
+                                  child: Text("Retry"),
+                                  style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          Color(0xFF8775fc))),
                                 ),
-                              ],
-                            )
-                          ],
-                        ),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
-                    ))
+                    ),
+                  ))
                 : load
                     ? Expanded(
                         child: Center(child: CircularProgressIndicator()))
                     : Expanded(
                         child: ListView.builder(
-                          itemCount: _newsController.responseDataBbc?.articles?.length??0,
+                          itemCount:
+                              _newsController.responseDataBbc?.articles?.length ?? 10,
                           scrollDirection: Axis.vertical,
                           itemBuilder: (context, index) => Padding(
                             padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
@@ -140,8 +151,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => NewsScreen(
-                                        response:
-                                            _newsController.responseDataBbc?.articles?[index]),
+                                        response: _newsController
+                                            .responseDataBbc?.articles?[index]),
                                   )),
                               child: Container(
                                 height: 200,
@@ -149,11 +160,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         fit: BoxFit.fitWidth,
-                                        image: NetworkImage(_newsController.responseDataBbc
-                                                ?.articles?[index].urlToImage
+                                        image: NetworkImage(_newsController
+                                                .responseDataBbc
+                                                ?.articles?[index]
+                                                .urlToImage
                                                 .toString() ??
                                             "https://media4.giphy.com/media/3oEjI6SIIHBdRxXI40/200w.gif?cid=6c09b952wv0yphvhi6m54h8bejydufv91sz2de5quondqyvm&ep=v1_gifs_search&rid=200w.gif&ct=g")),
-                                    borderRadius: BorderRadius.circular(20)),
+                                    borderRadius: BorderRadius.circular(30)),
                                 child: Column(
                                   children: [
                                     Expanded(
@@ -161,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(
-                                                        20)))),
+                                                        30)))),
                                     Expanded(
                                         child: Container(
                                       child: Padding(

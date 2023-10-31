@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_sas/controller/news_controller.dart';
 import 'package:news_app_sas/view/home_screen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
