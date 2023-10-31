@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Hero(
+        title: const Hero(
           tag: 'title',
           child: Text(
             "Newsy",
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
           ),
         ),
-        backgroundColor: Color(0xFF8775fc),
+        backgroundColor: const Color(0xFF8775fc),
         centerTitle: true,
         elevation: 0,
       ),
@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     "BBC News",
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
@@ -77,13 +77,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => SearchScreen(),
+                            builder: (context) => const SearchScreen(),
                           )),
-                      child: Icon(Icons.search)),
+                      child: const Icon(Icons.search)),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             (_newsController.responseDataBbc?.status == "error")
@@ -100,11 +100,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
                                 child: Text(
                                   'Oops!',
                                   style: TextStyle(
@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     loading();
                                   },
                                   child: Text("Retry"),
-                                  style: ButtonStyle(
+                                  style: const ButtonStyle(
                                       backgroundColor: MaterialStatePropertyAll(
                                           Color(0xFF8775fc))),
                                 ),
@@ -137,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ))
                 : load
-                    ? Expanded(
+                    ? const Expanded(
                         child: Center(child: CircularProgressIndicator()))
                     : Expanded(
                         child: ListView.builder(
@@ -176,28 +176,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     BorderRadius.circular(
                                                         30)))),
                                     Expanded(
-                                        child: Container(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(12.0),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                              height: 30,
-                                            ),
-                                            Text(
-                                              (_newsController.responseDataBbc
-                                                      ?.articles?[index].title)
-                                                  .toString(),
-                                              maxLines: 2,
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    )),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: Column(
+                                            children: [
+                                              const SizedBox(
+                                                height: 30,
+                                              ),
+                                              Text(
+                                                (_newsController.responseDataBbc
+                                                        ?.articles?[index].title)
+                                                    .toString(),
+                                                maxLines: 2,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.bold),
+                                              )
+                                            ],
+                                          ),
+                                        )),
                                   ],
                                 ),
                               ),

@@ -3,7 +3,7 @@ import 'package:news_app_sas/model/news_data_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewsScreen extends StatefulWidget {
-  NewsScreen({required this.response});
+  const NewsScreen({super.key, required this.response});
   final Article? response;
 
   @override
@@ -46,7 +46,7 @@ class _NewsScreenState extends State<NewsScreen> {
                                 decoration: BoxDecoration(
                                     color: Colors.black54,
                                     borderRadius: BorderRadius.circular(10)),
-                                child: Center(
+                                child: const Center(
                                     child: Icon(
                                   Icons.arrow_back_ios,
                                   color: Colors.white,
@@ -62,7 +62,7 @@ class _NewsScreenState extends State<NewsScreen> {
                   Expanded(child: Container()),
                   Expanded(
                       child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.black54,
                         borderRadius: BorderRadius.vertical(
                             top: Radius.zero, bottom: Radius.circular(30))),
@@ -73,7 +73,7 @@ class _NewsScreenState extends State<NewsScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -83,13 +83,13 @@ class _NewsScreenState extends State<NewsScreen> {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.grey[200]),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
                               (widget.response?.title).toString(),
                               maxLines: 4,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold),
@@ -106,13 +106,13 @@ class _NewsScreenState extends State<NewsScreen> {
               padding: const EdgeInsets.all(15.0),
               child: Column(
                 children: [
-                  Text((widget.response?.description).toString(),style: TextStyle(fontSize: 16,),),
-                  SizedBox(height: 10,),
-                  Text((widget.response?.content).toString(),style: TextStyle(fontSize: 16,),),
-                  SizedBox(height: 15,),
+                  Text((widget.response?.description).toString(),style: const TextStyle(fontSize: 16,),),
+                  const SizedBox(height: 10,),
+                  Text((widget.response?.content).toString(),style: const TextStyle(fontSize: 16,),),
+                  const SizedBox(height: 15,),
                   InkWell(
                     onTap: () => launchUrl(Uri.parse((widget.response?.url).toString())),
-                    child: Container(height: 40,width: 120,child: Center(child: Text("Read More",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.blue),))
+                    child: Container(height: 40,width: 120,child: const Center(child: Text("Read More",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.blue),))
                 ],
               ),
             )

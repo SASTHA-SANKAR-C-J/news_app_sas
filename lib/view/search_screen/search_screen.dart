@@ -10,7 +10,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  NewsController _newsController = NewsController();
+  final NewsController _newsController = NewsController();
    bool load = false;
   void search(value) async {
       setState(() {
@@ -26,16 +26,16 @@ class _SearchScreenState extends State<SearchScreen> {
     var width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF8775fc),
+        backgroundColor: const Color(0xFF8775fc),
         elevation: 0,
         leading: InkWell(
           onTap: () => Navigator.pop(context),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
         ),
-        title: Text(
+        title: const Text(
           'Search',
           style: TextStyle(color: Colors.white),
         ),
@@ -55,12 +55,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   borderSide: BorderSide.none,
                 ),
                 hintText: "Search here",
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
               ),
             ),
           ),
           load
-              ? Expanded(child: Center(child: CircularProgressIndicator()))
+              ? const Expanded(child: Center(child: CircularProgressIndicator()))
               : Expanded(
                   child: ListView.builder(
                     itemCount: _newsController.responseDataSearch?.articles?.length,
@@ -94,28 +94,26 @@ class _SearchScreenState extends State<SearchScreen> {
                                           borderRadius:
                                               BorderRadius.circular(20)))),
                               Expanded(
-                                  child: Container(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      Text(
-                                        (_newsController.responseDataSearch
-                                                ?.articles?[index].title)
-                                            .toString(),
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              )),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Column(
+                                      children: [
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text(
+                                          (_newsController.responseDataSearch
+                                                  ?.articles?[index].title)
+                                              .toString(),
+                                          maxLines: 2,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      ],
+                                    ),
+                                  )),
                             ],
                           ),
                         ),
